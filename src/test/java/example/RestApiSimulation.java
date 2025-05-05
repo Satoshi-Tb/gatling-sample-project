@@ -10,6 +10,9 @@ import io.gatling.javaapi.http.HttpProtocolBuilder;
 
 
 public class RestApiSimulation extends Simulation {
+	
+	private static final String baseUrl = System.getenv().getOrDefault("BASE_URL", "http://localhost:8080");
+	
 	// ユーザー情報更新用のパラメータ
 	private static final String UPDATE_USER_BODY = """
 		{
@@ -31,7 +34,7 @@ public class RestApiSimulation extends Simulation {
 	
     // HTTP設定
     private HttpProtocolBuilder httpProtocol = http
-		.baseUrl("http://localhost:8080")  // REST APIのベースURL
+		.baseUrl(baseUrl)  // REST APIのベースURL
 		.acceptHeader("application/json")
 		.contentTypeHeader("application/json")
 		.userAgentHeader("Gatling/Java Test");

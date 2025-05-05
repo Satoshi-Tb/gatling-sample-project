@@ -8,7 +8,7 @@
   <version>3.13.5</version>
 
   <properties>
-    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <gatling.version>${project.version}</gatling.version>
     <gatling-maven-plugin.version>4.16.3</gatling-maven-plugin.version>
@@ -27,7 +27,7 @@
   </dependencies>
 
   <build>
-    <finalName>gatling-test-app</finalName>
+    <finalName>gatling-sample-app</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -46,27 +46,9 @@
         <artifactId>gatling-maven-plugin</artifactId>
         <version>${gatling-maven-plugin.version}</version>
         <configuration>
+          <simulationClass>example.RestApiSimulation</simulationClass>
           <!-- Enterprise Cloud (https://cloud.gatling.io/) configuration reference: https://docs.gatling.io/reference/integrations/build-tools/maven-plugin/#running-your-simulations-on-gatling-enterprise-cloud -->
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>3.5.0</version>
-        <executions>
-		  <execution>
-		    <phase>package</phase>
-		    <goals><goal>shade</goal></goals>
-		    <configuration>
-		      <createDependencyReducedPom>false</createDependencyReducedPom>
-		      <transformers>
-		        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-		          <mainClass>com.example.RestApiSimulation</mainClass>
-		        </transformer>
-		      </transformers>
-		    </configuration>
-		  </execution>
-		</executions>
       </plugin>
     </plugins>
   </build>
