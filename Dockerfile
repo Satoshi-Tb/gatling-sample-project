@@ -13,4 +13,4 @@ COPY . .
 RUN mvn clean package
 
 # ホストからプロジェクトをマウントして mvn 実行する想定
-CMD ["./mvnw", "gatling:test"]
+CMD ["mvn", "gatling:test"]
